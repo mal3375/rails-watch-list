@@ -19,13 +19,6 @@ class ListsController < ApplicationController
     end
   end
 
-  def destroy
-    @bookmark = @list.bookmarks.find(params[:id])
-    @bookmark.destroy
-    redirect_to @list, notice: 'Bookmark was successfully removed from the list.'
-    
-  end
-
   private
 
   def set_list
