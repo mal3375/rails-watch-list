@@ -9,7 +9,7 @@
   <p>
     <%= bookmark.movie.title %>
      <%= bookmark.comment %>
-    <%= link_to 'Delete Bookmark', list_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete Bookmark', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "bla" } %>
   </p>
 <% end %>
 

@@ -7,13 +7,11 @@ class BookmarksController < ApplicationController
 
   def create
     @list = List.find(params[:list_id])
+
     @movie = Movie.find(params[:bookmark][:movie_id])
-    #@movie = Movie.find(params[:movie_id])
-    #@bookmark = Bookmark.new(bookmark_params)
-    #@bookmark.list = @list
-   # @bookmark.movie = @movie
-   #@bookmark = Bookmarks.new(bookmark_params)
-   @bookmark = Bookmark.new(movie: @movie, list: @list)
+   @bookmark = Bookmark.new(bookmark_params)
+   @bookmark.list = @list
+   #@bookmark = Bookmark.new(movie: @movie, list: @list)
     if @bookmark.save
       redirect_to list_path(@bookmark.list), notice: 'Bookmark was successfully added to the list.'
     else
@@ -22,7 +20,7 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @bookmark = @list.bookmarks.find(params[:id])
+    @bookmark = Bookmark.find(params[:id])
      @bookmark.destroy
     redirect_to list_path(@bookmark.list), notice: 'Bookmark was successfully removed from the list.'
   end
